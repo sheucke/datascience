@@ -84,3 +84,32 @@ for row in data:
 
 unique_sodas = set(sodas)
 print(unique_sodas)
+
+'''
+PART 5: calculate the average number of toppings per burito
+'''
+
+burrito_count = 0
+topping_count = 0
+
+# calculate number of toppings by counting the commas and adding 1
+
+for row in data:
+    if 'Burrito' in row[2]:
+        burrito_count += 1
+        topping_count += (row[3].count(',') + 1)
+
+# calculate the average topping count and round to 2 digits
+print(round(topping_count / float(burrito_count), 2))
+
+
+chips = {}
+
+for row in data:
+    if 'Chips' in row[2]:
+        if row[2] not in chips:
+            chips[row[2]] = int(row[1])
+        else:
+            chips[row[2]] += int(row[1])
+
+print(chips)
