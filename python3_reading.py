@@ -45,3 +45,42 @@ print(starred)
 
 # create a list that contains the average number of incidents per distance
 print([int(row[2]) + int(row[5]) / float(row[1]) for row in data])
+
+# specify that the delimiter is a tab character
+with open('../data/chipotle_orders.tsv', 'rU') as f:
+    data = [row for row in csv.reader(f, delimiter='\t')]
+
+
+'''
+PART 2: separate the header and data into two different lists
+'''
+
+print(data[0])
+print(data[1:])
+
+
+'''
+PART 3: calculate the average price of an order
+'''
+
+num_orders = len(set([row[0] for row in data]))
+print(num_orders)
+print(float(data[1][4][1:-1]))
+data = data[1:]
+prices = [float(row[4][1:-1]) for row in data]
+print(prices)
+
+print(round(sum(prices) / num_orders, 2))
+
+'''
+PART 4: create a list of all unique sodas and soft drinks tht they sell
+'''
+
+sodas = []
+for row in data:
+    if 'Canned' in row[2]:
+        sodas.append(row[3][1:-1])
+
+
+unique_sodas = set(sodas)
+print(unique_sodas)
