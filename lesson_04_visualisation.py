@@ -61,5 +61,38 @@ drinks.plot(x='beer_servings', y='wine_servings', kind='scatter', c=colors)
 plt.show()
 
 # Scatter matrix
-pd.scatter_matrix(drinks)
+pd.plotting.scatter_matrix(drinks)
+plt.show()
+
+drinks.groupby(
+    'continent').total_litres_of_pure_alcohol.mean().plot(kind='bar')
+plt.show()
+
+# homework
+
+auto = pd.read_table('../data/auto_mpg.txt', sep='|')
+
+auto.groupby('cylinders').mpg.mean().plot(kind='bar')
+plt.title("Comparing Mean MPG for Different Numbers of Cylinders")
+plt.xlabel("Number of Cylinders")
+plt.ylabel("Average MPG")
+plt.show()
+
+pd.plotting.scatter_matrix(auto)
+
+
+pd.plotting.scatter_matrix(auto, c=auto.mpg)
+plt.show()
+
+# do heavier of ligther cars get better mpg
+auto.plot(kind='scatter', x='weight', y='mpg', alpha=0.5)
+plt.title('Car MPG by Weight')
+plt.xlabel('Car weight')
+plt.ylabel('MPG')
+plt.show()
+
+auto.plot(kind='scatter', x='displacement', y='horsepower', alpha=0.5)
+plt.title('Horsepower by Engine Displacement')
+plt.xlabel('Engine Displacement')
+plt.ylabel('Horsepower')
 plt.show()
